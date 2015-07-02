@@ -49,7 +49,7 @@ namespace InversionControl
 
         public object Resolve(Type IRepository)
         {
-           return ResolveObject(IRepository);
+            return ResolveObject(IRepository);
         }
         public IRepository Resolve<IRepository>()
         {
@@ -57,13 +57,19 @@ namespace InversionControl
         }
         private object ResolveObject(Type typeIRepository)
         {
-            if (typeIRepository == null) { throw new ArgumentNullException("ResolveObject: typeIRepository cannot be null"); }
+            if (typeIRepository == null)
+            {
+                //throw new ArgumentNullException("ResolveObject: typeIRepository cannot be null");
+                // I am not sure why, but on rare occasions ASP.Net pages throw the above exception when no resolve request should be called
+                // It seems safe to me to just return null and have the other end take care of resolving for null
+                return null;
+            }
 
             var thisObject = ObjectList.FirstOrDefault(co => co.TypeOfIRepository == typeIRepository);
             if (thisObject == null)
             {
                 // If this was a larger project I would create/use a custom exceptions class, however for this it seems overkill
-                throw new Exception(string.Format("ControlObject not registered: {0}", typeIRepository.Name));
+                throw new TypeNotRegisteredException(string.Format("ControlObject not registered: {0}", typeIRepository.Name));
             }
             return GetInstance(thisObject);
         }

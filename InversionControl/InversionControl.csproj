@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="ExampleContainer.cs" />
     <Compile Include="ControlObject.cs" />
+    <Compile Include="Exceptions.cs" />
     <Compile Include="IContainer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

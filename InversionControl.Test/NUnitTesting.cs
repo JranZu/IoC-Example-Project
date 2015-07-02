@@ -35,7 +35,7 @@ namespace InversionControl.Test
             catch (Exception ex)            {                exception = ex;            }
 
             //TODO: Looks like I should create a custom exception class after all
-            Assert.That(exception, Is.InstanceOf<Exception>());
+            Assert.That(exception, Is.InstanceOf<TypeNotRegisteredException>());
         }
 
         [Test]
