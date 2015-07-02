@@ -1,0 +1,17 @@
+﻿@{ViewBag.Title = "Anthony Nichols - IoC Example Project";}
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head runat="server">
+        <!--Not sure what this does-->
+        <title>Plans</title>
+    </head>
+    <body>
+        <div>
+            <form action="/Plan/Create" method="post">
+                <div>Plan ID: <input name="planId" type="number" value="222" /></div>
+                <div>Plan Name: <input name="name" type="text" value="Awesome Plan" /></div>
+                <input name="createPlan" type="submit" value="Create Plan" />
+            </form>
+        </div>
+    </body>
+</html>
