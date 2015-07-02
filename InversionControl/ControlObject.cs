@@ -10,25 +10,25 @@ namespace InversionControl
     {
         internal object Instance;
 
-        public Type TypeOfIRepository { get; private set; }
-        public Type TypeOfRepository { get; private set; }
+        public Type TypeRegistered { get; private set; }
+        public Type TypeImplemented { get; private set; }
         public LifestyleType Lifestyle { get; private set; }
 
-        public ControlObject(Type typeOfIRepository, Type typeOfRepository, LifestyleType lifestyle)
+        public ControlObject(Type typeToRegister, Type typeToImplement, LifestyleType lifestyle)
         {
-            TypeOfIRepository = typeOfIRepository;
-            TypeOfRepository = typeOfRepository;
+            TypeRegistered = typeToRegister;
+            TypeImplemented = typeToImplement;
             Lifestyle = lifestyle;
         }
 
-        public bool IsType<T>()
+        public bool IsRegisteredType<T>()
         {
-            return TypeOfIRepository == typeof(T);
+            return TypeRegistered == typeof(T);
         }
 
         internal void Instantiate(params object[] args)
         {
-            Instance = Activator.CreateInstance(this.TypeOfRepository, args);
+            Instance = Activator.CreateInstance(this.TypeImplemented, args);
         }
 
     }

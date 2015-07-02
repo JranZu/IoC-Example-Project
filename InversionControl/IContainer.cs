@@ -10,9 +10,9 @@ namespace InversionControl
 
     public interface IContainer
     {
-        void Register<Itype, Repository>();
-        void Register<Itype, Repository>(LifestyleType lifestyle);
-        Itype Resolve<Itype>();
-        object Resolve(Type Itype);
+        void Register<TypeRegistered, TypeImplemented>();
+        void Register<TypeRegistered, TypeImplemented>(LifestyleType lifestyle);
+        TypeRegistered Resolve<TypeRegistered>();
+        object Resolve(Type TypeRegistered);
     }
 }
