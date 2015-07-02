@@ -14,14 +14,14 @@ namespace InversionControl.Test
             container.Register<IRepository, Repository>();
             Assert.That(container.IsTypeRegistered<IRepository>());
         }
-        
+
         [Test]
         public void CheckResolveObject()
         {
             ExampleContainer container = new ExampleContainer();
-            container.Register<IRepository, Repository>();         
+            container.Register<IRepository, Repository>();
             var instance = container.Resolve<IRepository>();
-            
+
             Assert.That(instance, Is.InstanceOf<Repository>());
         }
 
@@ -29,12 +29,10 @@ namespace InversionControl.Test
         public void CheckExceptionThrownTypeNotRegistered()
         {
             ExampleContainer container = new ExampleContainer();
-          
-            Exception exception = null;
-            try            {                container.Resolve<IRepository>();            }
-            catch (Exception ex)            {                exception = ex;            }
 
-            //TODO: Looks like I should create a custom exception class after all
+            Exception exception = null;
+            try { container.Resolve<IRepository>(); }
+            catch (Exception ex) { exception = ex; }
             Assert.That(exception, Is.InstanceOf<TypeNotRegisteredException>());
         }
 
